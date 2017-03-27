@@ -3,6 +3,9 @@
 
 angular.module('inventory')
 .controller('InventoryController', InventoryController);
+/**
+ * Exports and array of objects containing various data pertaining to the inventory.
+ */
 function InventoryController() {
   let vm = this;
   vm.inventory = [
@@ -21,7 +24,11 @@ function InventoryController() {
   ];
 
   vm.tax = 0.0575;
-
+  /**
+   * calculates the total price of various items including discounts and tax.
+   * @param  {Object} item [description]
+   * @return {number}      [description]
+   */
   vm.totalPrice = function totalPrice(item) {
     let price = (item.price - item.discount);
     let tax = price * vm.tax;
