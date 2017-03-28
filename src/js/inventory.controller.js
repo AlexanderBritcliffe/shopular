@@ -8,6 +8,9 @@ angular.module('inventory')
  */
 function InventoryController() {
   let vm = this;
+
+  vm.newItem = {};
+
   vm.inventory = [
     { "id": 2957, "name": "widget", "price": 32, "quantity": 203, "color": "red", "discount": 31 },
     { "id": 89274, "name": "golf club", "price": 98, "quantity": 10, "color": "black", "discount": 0 },
@@ -33,7 +36,24 @@ function InventoryController() {
     let price = (item.price - item.discount);
     let tax = price * vm.tax;
     return price + tax;
+
   };
+
+  vm.addItem = function addItem(item) {
+    if (typeof(item) !== 'object' || typeof(item.name) !== 'string') {
+      return;
+    }
+
+    vm.inventory.push({
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      color: item.color,
+      discount: item.discount
+    });
+    vm.newItem = {};
+    };
+
 }
 
 
