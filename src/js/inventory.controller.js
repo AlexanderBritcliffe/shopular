@@ -38,7 +38,11 @@ function InventoryController() {
     return price + tax;
 
   };
-
+/**
+ * adds an item to list when entered and submitted by user
+ * @param {Object} item [description]
+ * @return {Void}
+ */
   vm.addItem = function addItem(item) {
     if (typeof(item) !== 'object' || typeof(item.name) !== 'string') {
       return;
@@ -57,7 +61,11 @@ function InventoryController() {
 }
 
 
-
-
+// vm.addItem = function addItem(item) {
+//    if (typeof(item) !== 'object' || typeof(item.name) !== 'string' ||
+//    typeof(item.price) !== 'number' || typeof(item.quantity) !== 'number' ||
+//    typeof(item.color) !== 'string' || typeof(item.discount) !== 'number') {
+//      return;
+//     }
 
 }());
