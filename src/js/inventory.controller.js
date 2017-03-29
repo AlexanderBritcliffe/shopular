@@ -39,8 +39,8 @@ function InventoryController() {
 
   };
 /**
- * adds an item to list when entered and submitted by user
- * @param {Object} item [description]
+ * adds a new item to the inventory
+ * @param {Object} item should have a name, price, quantity, color, discount
  * @return {Void}
  */
   vm.addItem = function addItem(item) {
