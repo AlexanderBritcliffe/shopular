@@ -21,27 +21,19 @@
       item.discount = Number(item.discount);
 
 
-      if (typeof(item) !== 'object') {
-        return;
-      }
 
-      if (typeof(item.name) !== 'string' ||
+      if (typeof(item) !== 'object' ||
+      typeof(item.name) !== 'string' ||
       typeof(item.price) !== 'number' ||
-      typeof(item.quantity) !== 'number') {
+      Number.isNaN(item.price)||
+      typeof(item.quantity) !== 'number' ||
+      Number.isNaN(item.quantity)||
+      typeof(item.color) !== 'string' ||
+      typeof(item.discount) !== 'number' ||
+      Number.isNaN(item.discount)) {
         return;
       }
-
-      if (typeof(item.color) !== 'string' && item.color) {
-        return;
-      }
-
-      if (typeof(item.discount) !== 'number' && item.discount) {
-        return;
-      }
-
-      // Number.isNaN(item) ||
-      // typeof(item.quantity) !== 'number' ||
-      // Number.isNaN(item) || item.price < 0.01 ||
+      
 
 
 
