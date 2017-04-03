@@ -4,7 +4,6 @@
   angular.module('inventory').factory('ItemService', ItemService);
 
 
-
   function ItemService() {
 
     let items = JSON.parse(localStorage.getItem('items')) || [];
@@ -15,27 +14,40 @@
 
 
     function addItem(item) {
-      console.log('additem service', item);
+
 
       item.price = Number(item.price);
       item.quantity = Number(item.quantity);
       item.discount = Number(item.discount);
 
-      if (typeof(item) !== 'object' ||
-         typeof(item.name) !== 'string' ||
-         typeof(item.price) !== 'number' ||
-         Number.isNaN(item) ||
-         typeof(item.quantity) !== 'number' ||
-         Number.isNaN(item) ||
-         typeof(item.color) !== 'string' ||
-         typeof(item.discount) !== 'number' ||
-         Number.isNaN(item))
-         {
 
-        
-
+      if (typeof(item) !== 'object') {
+        return;
       }
-      console.log('add item after conditional');
+
+      if (typeof(item.name) !== 'string' ||
+      typeof(item.price) !== 'number' ||
+      typeof(item.quantity) !== 'number') {
+        return;
+      }
+
+      if (typeof(item.color) !== 'string' && item.color) {
+        return;
+      }
+
+      if (typeof(item.discount) !== 'number' && item.discount) {
+        return;
+      }
+
+      // Number.isNaN(item) ||
+      // typeof(item.quantity) !== 'number' ||
+      // Number.isNaN(item) || item.price < 0.01 ||
+
+
+
+
+
+
       items.push({
         name: item.name,
         price: item.price,

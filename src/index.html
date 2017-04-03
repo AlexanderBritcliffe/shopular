@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Shopular</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel='stylesheet'href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-  integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+  <link rel='stylesheet' href='style.css'>
+
+
   <body>
     <header>
       <h1>Shopular<h1>
@@ -13,34 +14,31 @@
       <main ng-controller='InventoryController as data'>
         <form name='addInventory' class='form-group' ng-submit='addInventory.$valid && data.addItem(data.newItem)'>
           <label for='Name Input'>Name</label>
-          <input type='text' name='Name' class='form-control' placeholder='Name' required ng-model='data.newItem.name'>
+          <input type='text' name='Name' class= 'form-control' placeholder='Name' required ng-model='data.newItem.name'>
 
           <label for='Price Input'>Price</label>
-          <input type='text' name='Price' class='form-control' placeholder='0.00' required ng-model='data.newItem.price'>
+          <input type= 'number' name='Price' class='form-control' placeholder='0.00' required ng-model='data.newItem.price'>
 
           <label for='Quantity Input'>Quantity</label>
-          <input type='text' name='Quantity' class='form-control' placeholder='0' required ng-model='data.newItem.quantity'>
+          <input type='number' name='Quantity' class='form-control' placeholder='0' required ng-model='data.newItem.quantity'>
 
           <label for='Color Input'>Color</label>
           <input type='text' name='Color' class='form-control' placeholder='Color' required ng-model='data.newItem.color'>
 
           <label for='Discount Input'>Discount</label>
-          <input type='text' name=Discount class='form-control' placeholder='0' required ng-model='data.newItem.discount'>
+          <input type='number' name='Discount' class='form-control' placeholder='0' required ng-model='data.newItem.discount'>
 
           <input type='submit' value='Add Item'>
         </form>
 
-        <p ng-cloak
-          ng-show='addinv.nameInput.$touched && !addinv.nameInput.$valid'>Please enter a valid item name!</p>
-        <p ng-cloak
-          ng-show='addinv.priceInput.$touched && !addinv.priceInput.$valid'>Please enter a valid item price!</p>
-        <p ng-cloak
-          ng-show='addinv.quantityInput.$touched && !addinv.quantityInput.$valid'>Please enter a valid item quantity!</p>
-        <p ng-cloak
-          ng-show='addinv.colorInput.$touched && !addinv.colorInput.$valid'>Please enter a valid item color!</p>
-        <p ng-cloak
-          ng-show='addinv.discountInput.$touched && !addinv.discountInput.$valid'>Item discount cannot be less than $0.00!</p>
-
+        <p class= ng-cloak
+        ng-show='addinv.nameInput.$touched && !addinv.nameInput.$valid'>Please enter a valid item name!</p>
+        <p class= ng-cloak
+        ng-show='addinv.priceInput.$touched && !addinv.priceInput.$valid'>Please enter a valid item price!</p>
+        <p class= ng-cloak
+        ng-show='addinv.quantityInput.$touched && !addinv.quantityInput.$valid'>Please enter a valid item quantity!</p>
+        <p class= ng-cloak
+        ng-show='addinv.colorInput.$touched && !addinv.colorInput.$valid'>Please enter a valid item color!</p>
         <table class='table table-striped col-lg-8'>
           <tr>
             <th><a href="#" ng-click='sortType ="name" ; sortReverse = !sortReverse'>Name</a></th>
@@ -48,20 +46,20 @@
             <th><a href="#" ng-click='sortType ="quantity" ; sortReverse = !sortReverse'>Quantity</a></th>
             <th><a href="#" ng-click='sortType ="color" ; sortReverse = !sortReverse'>Color</a></th>
           </tr>
-          <tr ng-repeat='inventory in data.inventory | orderBy:data.sortType:data.sortReverse'>
+          <tr ng-repeat='inventory in data.inventoryList | orderBy: data.sortType:sortReverse'>
             <td>{{inventory.name}}</td>
-            <td>{{data.totalPrice(inventory) | currency : "$" : 2}}<img src='/image/98350f05-sale_2.png' ng-hide='inventory.discount ===0'></td>
-            <td><input type='number' name='ng-cloak' ng-model='inventory.quantity' min='0'></td>
-            <td>{{inventory.color}}</td>
-          </tr>
-        </table>
-      </main>
-      <footer>
-        Footer!
-      </footer>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-      <script src="/js/inventory.module.js"></script>
-      <script src="/js/inventory.controller.js"></script>
-      <script src="/js/item.service.js"></script>
-    </body>
-    </html>
+            <td>{{data.totalPrice(inventory) | currency : "$"}}
+              <img src='/images/98350f05-sale_2.png' alt='sale tag' ng-show='inventory.discount'></td>
+              <td><input type='number' name='quantityInput' ng-model='inventory.quantity' min='0'></td>
+              <td>{{inventory.color}}</td>
+            </tr>
+          </table>
+        </main>
+        <footer>
+          Footer!
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="/js/app.js"></script>
+
+      </body>
+      </html>

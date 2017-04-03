@@ -5,8 +5,6 @@
   .controller('InventoryController', InventoryController);
 
   InventoryController.$inject = ['ItemService'];
-
-
   function InventoryController(ItemService) {
     let vm = this;
 
@@ -15,9 +13,13 @@
     vm.sortReverse = false;
     vm.tax = 0.0575;
 
-    vm.inventory = ItemService.getAllItems();
+    vm.inventoryList = ItemService.getAllItems();
 
+    vm.add = function add(item) {
+      ItemService.addItem(item);
+      vm.newItem = {};
 
+    };
 
 
     vm.totalPrice = function totalPrice(item) {
@@ -28,7 +30,6 @@
     };
 
     vm.addItem = function addItem(item) {
-      console.log('addItem Inventory');
       ItemService.addItem(item);
       vm.newItem = {};
 
