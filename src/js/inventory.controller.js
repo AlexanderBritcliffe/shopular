@@ -5,6 +5,9 @@
   .controller('InventoryController', InventoryController);
 
   InventoryController.$inject = ['ItemService'];
+  /**
+  * Creates the inventory controllers to create inventory data.
+  */
   function InventoryController(ItemService) {
     let vm = this;
 
@@ -21,6 +24,12 @@
 
     };
 
+    /**
+    * Calculates total price of item by adding discounts and taxes that may apply.
+    * @param  {Object} item Items from the InventoryList array
+    * @return {Number}       Total price.
+    */
+
 
     vm.totalPrice = function totalPrice(item) {
       let price = (item.price - item.discount);
@@ -28,6 +37,12 @@
       return price + tax;
 
     };
+
+    /**
+      * Add item to the array which holds the user data
+      * @param {Object} item The item information
+      * @return {void}
+      */
 
     vm.addItem = function addItem(item) {
       ItemService.addItem(item);

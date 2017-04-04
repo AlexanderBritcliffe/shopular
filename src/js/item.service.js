@@ -3,16 +3,27 @@
 
   angular.module('inventory').factory('ItemService', ItemService);
 
-
+  /**
+  * Handles the various items in the InventoryList
+  */
   function ItemService() {
 
     let items = JSON.parse(localStorage.getItem('items')) || [];
+
+    /**
+    * Gets the items inventory
+    * @return {Array} inventory items
+    */
 
     function getAllItems() {
       return items;
     }
 
 
+    /**
+    * Adds new item to the list of inventory
+    * @return {void}
+    */
     function addItem(item) {
 
 
@@ -33,12 +44,6 @@
       Number.isNaN(item.discount)) {
         return;
       }
-      
-
-
-
-
-
 
       items.push({
         name: item.name,
