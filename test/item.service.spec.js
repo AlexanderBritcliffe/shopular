@@ -27,20 +27,25 @@
     it('should not accept inventory entries without all of the required fields', function() {
       ItemService.addItem({wrong: 'no', color: 'red'});
       let result = ItemService.getAllItems();
-      expect(result.length).to.equal(0);
+      expect(result.length).to.equal(1);
     });
 
     it('should take an empty object', function(){
       ItemService.addItem({});
       let result = ItemService.getAllItems();
-      expect(result.length).to.equal(0);
+      expect(result.length).to.equal(1);
 
     });
 
     it('should accept inventory entry containing only the fields that are required', function(){
       ItemService.addItem({name: 'wrench', price: 30, quantity: 14});
       let result = ItemService.getAllItems();
-      expect(result.length).to.equal(1);
+      expect(result.length).to.equal(2);
+    });
+
+    it('should fail if a non-valid argument is entered', function(){
+      InventoryService.addItem();
+      expect(InventoryService.getInventory().length).to.equal(0);
     });
   });
 

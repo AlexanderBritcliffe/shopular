@@ -89,12 +89,13 @@ module.exports = function gruntConfig(grunt) {
           ],
           singleRun: true,
           preprocessors: {
-            'src/js/**/*.js': ['dots', 'coverage'],
+            'src/js/**/*.js': ['coverage']
+          },
+            reporters: ['dots', 'coverage'],
             coverageReporter: {
               type: 'text-summary'
             }
           }
-        }
 
 
 
